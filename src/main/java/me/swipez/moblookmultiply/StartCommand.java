@@ -7,8 +7,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.UUID;
-
 public class StartCommand implements CommandExecutor {
     MobLookMultiply plugin;
 
@@ -25,16 +23,18 @@ public class StartCommand implements CommandExecutor {
                 if (args.length == 1){
                     if (args[0].equals("start")){
                         Bukkit.broadcastMessage(ChatColor.GREEN+"Mob look multiply challenge has started!");
+                        MobLookMultiply.mobMultiplier.clear();
+                        MobLookMultiply.duplicatedMobs.clear();
                         for (Player player : Bukkit.getOnlinePlayers()){
-                            UUID uuid = player.getUniqueId();
-                            MobLookMultiply.mobMultiplier.put(uuid, 1);
-                            MobLookMultiply.timer = MobLookMultiply.startingTimer;
+                            MobLookMultiply.mobMultiplier.put(player.getUniqueId(), 1);
                         }
-                        plugin.gamestarted = true;
+                        MobLookMultiply.timer = MobLookMultiply.startingTimer;
+                        MobLookMultiply.gamestarted = true;
                     }
                     if (args[0].equals("stop")) {
                         Bukkit.broadcastMessage(ChatColor.GREEN+"Mob look multiply challenge has ended!");
-                        plugin.gamestarted = false;
+                        MobLookMultiply.gamestarted = false;
+                        MobLookMultiply.duplicatedMobs.clear();
                     }
 
                 }

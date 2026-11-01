@@ -18,7 +18,7 @@ public class TimeDecreaseRunnable extends BukkitRunnable {
                     MobLookMultiply.timer = MobLookMultiply.startingTimer;
                     for (Player player : Bukkit.getOnlinePlayers()){
                         UUID uuid = player.getUniqueId();
-                        MobLookMultiply.mobMultiplier.put(uuid, MobLookMultiply.mobMultiplier.get(uuid)+1);
+                        MobLookMultiply.mobMultiplier.put(uuid, MobLookMultiply.mobMultiplier.getOrDefault(uuid, 1) + 1);
                         player.sendMessage(ChatColor.GRAY+"[!] Mobs will now multiply "+ChatColor.LIGHT_PURPLE+MobLookMultiply.mobMultiplier.get(uuid)+ChatColor.GRAY+" times faster!");
                     }
                 }

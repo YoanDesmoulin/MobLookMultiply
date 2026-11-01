@@ -7,3 +7,7 @@ commands:
   moblook:
     usage: /moblook <start/stop>
     description: Starts and stops the mob look challenge!
+permissions:
+  moblook.toggle:
+    description: Allows starting and stopping the mob look challenge
+    default: op
